@@ -1,0 +1,111 @@
+@use "./config/variables" as *;
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .operation {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    .counter-value {
+      background-color: $blue-sky;
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      align-content: center;
+      border-radius: 15px;
+      color: white;
+      font-weight: bold;
+      position: relative;
+      .touch {
+        position: absolute;
+        color: white;
+        font-weight: 300;
+        background-color: black;
+        text-align: center;
+        padding: 8px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        font-size: 0.8rem;
+        align-content: center;
+        z-index: 4;
+        bottom: -15%;
+        right: -15%;
+        cursor: auto;
+      }
+    }
+    .button-oper {
+      border: 0px;
+      background-color: transparent;
+      color: $blue-sky;
+      cursor: pointer;
+      width: 80px;
+      height: 80px;
+      font-size: 2.5rem;
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .button-details {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    button {
+      background-color: transparent;
+      border: 1px black solid;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 20px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+  .disabled {
+    visibility: hidden;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    gap: 20px;
+    .input {
+      display: flex;
+      flex-direction: column;
+      width: 180px;
+      text-align: center;
+      input {
+        outline: none;
+        border: 0px;
+        border-bottom: 2px solid black;
+        padding: 3px;
+        background-color: transparent;
+        text-align: center;
+      }
+      select {
+        outline: none;
+        border: 0px;
+        border-bottom: 2px solid black;
+        padding: 3px;
+        background-color: transparent;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+  }
+}
