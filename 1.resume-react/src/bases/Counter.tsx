@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import { useRef, useState } from "react";
 
 interface Props {
@@ -19,6 +20,8 @@ const Counter: React.FC<Props> = ({ initialState }) => {
     value: initialState ?? 0,
     clicks: 0,
   });
+  const valueRef = useRef<HTMLParagraphElement>(null);
+  const tl = gsap.timeline();
   const [showDetails, setShowDetails] = useState(false);
   const [length, setLength] = useState(true);
 
@@ -30,9 +33,26 @@ const Counter: React.FC<Props> = ({ initialState }) => {
     switch (operator) {
       case Operations.SUM:
         setCounter((prev) => ({ ...prev, value: prev.value + value }));
+        tl.to(valueRef.current, { y: -100, duration: 0.2, ease: "ease.out" });
+        tl.to(valueRef.current, {
+          y: 0,
+          duration: 0.1,
+          ease: "ease.in",
+        });
+
         break;
       case Operations.REST:
         setCounter((prev) => ({ ...prev, value: prev.value - value }));
+        tl.to(valueRef.current, {
+          y: 70,
+          duration: 0.2,
+          ease: "ease.out",
+        });
+        tl.to(valueRef.current, {
+          y: 0,
+          duration: 0.1,
+          ease: "ease.in",
+        });
         break;
       default:
         break;
@@ -50,7 +70,9 @@ const Counter: React.FC<Props> = ({ initialState }) => {
           -
         </button>
         <span className="counter-value">
-          {counter.value}
+          <span style={{ display: "inline-block" }} ref={valueRef}>
+            {counter.value}
+          </span>
           <span className="touch" title="touched">
             {counter.clicks}
           </span>
