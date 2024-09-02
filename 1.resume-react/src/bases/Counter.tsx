@@ -1,64 +1,15 @@
-import gsap from "gsap";
-import { useRef, useState } from "react";
-
-interface Props {
-  initialState?: number;
-}
-
-interface counterState {
-  clicks: number;
-  value: number;
-}
-
-enum Operations {
-  SUM,
-  REST,
-}
+import { useState } from "react";
+import { Operations, Props } from "../types/counter";
+import useCounter from "../hooks/useCounter";
 
 const Counter: React.FC<Props> = ({ initialState }) => {
-  const [counter, setCounter] = useState<counterState>({
-    value: initialState ?? 0,
-    clicks: 0,
-  });
-  const valueRef = useRef<HTMLParagraphElement>(null);
-  const tl = gsap.timeline();
   const [showDetails, setShowDetails] = useState(false);
   const [length, setLength] = useState(true);
 
-  const numberForm = useRef<HTMLInputElement>(null);
-  const operation = useRef<HTMLSelectElement>(null);
-
-  const onClickCounter = (operator: Operations, value = 1) => {
-    if (counter.value <= 0 && operator === Operations.REST) return;
-    switch (operator) {
-      case Operations.SUM:
-        setCounter((prev) => ({ ...prev, value: prev.value + value }));
-        tl.to(valueRef.current, { y: -100, duration: 0.2, ease: "ease.out" });
-        tl.to(valueRef.current, {
-          y: 0,
-          duration: 0.1,
-          ease: "ease.in",
-        });
-
-        break;
-      case Operations.REST:
-        setCounter((prev) => ({ ...prev, value: prev.value - value }));
-        tl.to(valueRef.current, {
-          y: 70,
-          duration: 0.2,
-          ease: "ease.out",
-        });
-        tl.to(valueRef.current, {
-          y: 0,
-          duration: 0.1,
-          ease: "ease.in",
-        });
-        break;
-      default:
-        break;
-    }
-    setCounter((prev) => ({ ...prev, clicks: prev.clicks + 1 }));
-  };
+  const { numberForm, onClickCounter, operation, valueRef, counter } =
+    useCounter({
+      initialState,
+    });
 
   return (
     <div className="counter">
