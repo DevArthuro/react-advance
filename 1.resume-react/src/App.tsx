@@ -1,10 +1,12 @@
 import Counter from "./bases/Counter";
+import CounterWithReducer from "./bases/CounterWithReducer";
 
 function App() {
   return (
     <div>
       <div className="first">
-        <Counter />
+        {/* <Counter />*/}
+        <CounterWithReducer />
       </div>
     </div>
   );
