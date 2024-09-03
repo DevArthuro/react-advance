@@ -19,11 +19,12 @@ body {
   height: 100%;
   padding: 20px;
   display: flex;
-  width: 150px;
+  width: 250px;
   flex-direction: column;
   justify-content: left;
   align-items: center;
   gap: 50px;
+  position: relative;
 }
 .container nav .logo img {
   width: 60px;
@@ -39,9 +40,8 @@ body {
 }
 .container nav ul .active {
   opacity: 0.8;
-  border-left: 1px solid white;
-  padding: 4px;
-  font-size: 1.2rem;
+  border-left: 3px solid white;
+  padding: 0 0 0 4px;
 }
 .container nav ul a {
   text-decoration: none;
@@ -49,8 +49,57 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
 }
+.container nav .icon-x {
+  display: none;
+}
 .container main {
   background-color: #23272b;
-  padding: 20px 20px 0;
+  padding: 0;
   color: white;
+  padding: 0 20px;
+}
+.container main .icon {
+  display: none;
+}
+@media (max-width: 450px) {
+  .container nav {
+    width: 100% !important;
+  }
+}
+@media (max-width: 750px) {
+  .container nav {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    transform: translateX(-100%);
+    transition: 0.5s ease-in-out;
+  }
+  .container nav .icon-x {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: white;
+  }
+  .container .visible-menu {
+    transform: translateX(0);
+    transition: 0.5s ease-out;
+  }
+  .container .icon {
+    display: none;
+  }
+  .container main {
+    z-index: 1;
+    position: relative;
+    padding: 40px 20px 0;
+  }
+  .container main .icon {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
 }
