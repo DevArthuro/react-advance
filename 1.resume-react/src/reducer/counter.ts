@@ -1,21 +1,22 @@
-import { ActionsCounter, counterState } from "../types/counter";
+import { counterState } from "../types/counter";
+import { ACTION_TYPES, ACTIONS_COUNTER } from "./types/counter";
 
 export const counterReducer = (
   state: counterState,
-  action: ActionsCounter
+  action: ACTIONS_COUNTER
 ): counterState => {
   switch (action.type) {
-    case "increase":
+    case ACTION_TYPES.INCREASE:
       return {
         clicks: state.clicks + 1,
         value: state.value + action.payload.value,
       };
-    case "decrease":
+    case ACTION_TYPES.DECREASE:
       return {
         clicks: state.clicks + 1,
         value: state.value - action.payload.value,
       };
-    case "reset":
+    case ACTION_TYPES.RESET:
       return {
         clicks: 0,
         value: 0,
