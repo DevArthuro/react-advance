@@ -1,4 +1,5 @@
 import { lazy, LazyExoticComponent } from "react";
+import NoLayoutLazy from "../01-lazyload/layouts/NoLayoutLazy";
 
 type JSXElement = () => JSX.Element;
 
@@ -19,6 +20,8 @@ To rename chunck in wepack this looks
 const lazy1 = lazy(() => import("../01-lazyload/pages/Lazyload1"));
 const lazy2 = lazy(() => import("../01-lazyload/pages/Lazyload2"));
 const lazy3 = lazy(() => import("../01-lazyload/pages/Lazyload3"));
+
+const lazyLoadLayout = lazy(() => import("../01-lazyload/layouts/LayoutLazy"));
 
 export const ROUTES: Route[] = [
   {
@@ -41,5 +44,19 @@ export const ROUTES: Route[] = [
     path: "users",
     appearance: "Users",
     Component: lazy3,
+  },
+  {
+    id: "root.lazyloadLayout",
+    href: "/lazyloadLayout/*",
+    path: "lazyloadLayout",
+    appearance: "Lazyload Layout",
+    Component: lazyLoadLayout,
+  },
+  {
+    id: "root.notLayout",
+    href: "/notLayout",
+    path: "notLayout",
+    appearance: "Not lazy layout",
+    Component: NoLayoutLazy,
   },
 ];
