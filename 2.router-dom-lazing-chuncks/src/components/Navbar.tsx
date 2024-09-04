@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Logo from "../../public/vite.svg";
 import { ROUTES } from "../utils/routes";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -56,7 +56,9 @@ const Navbar = () => {
             <i className="fa-solid fa-bars fa-xl"></i>
           </span>
         )}
-        <Outlet />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );

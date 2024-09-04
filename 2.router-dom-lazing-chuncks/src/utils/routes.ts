@@ -1,14 +1,18 @@
-import Lazyload1 from "../01-lazyload/components/Lazyload1";
-import Lazyload2 from "../01-lazyload/components/Lazyload2";
-import Lazyload3 from "../01-lazyload/components/Lazyload3";
+import { lazy, LazyExoticComponent } from "react";
+
+type JSXElement = () => JSX.Element;
 
 interface Route {
   id: string;
   href: string;
   path: string;
   appearance: string;
-  Component: () => JSX.Element;
+  Component: LazyExoticComponent<JSXElement> | JSXElement;
 }
+
+const lazy1 = lazy(() => import("../01-lazyload/pages/Lazyload1"));
+const lazy2 = lazy(() => import("../01-lazyload/pages/Lazyload2"));
+const lazy3 = lazy(() => import("../01-lazyload/pages/Lazyload3"));
 
 export const ROUTES: Route[] = [
   {
@@ -16,20 +20,20 @@ export const ROUTES: Route[] = [
     href: "/",
     path: "home",
     appearance: "Home",
-    Component: Lazyload1,
+    Component: lazy1,
   },
   {
     id: "root.about-us",
     href: "/about",
     path: "about",
     appearance: "About us",
-    Component: Lazyload2,
+    Component: lazy2,
   },
   {
     id: "root.users",
     href: "/users",
     path: "users",
     appearance: "Users",
-    Component: Lazyload3,
+    Component: lazy3,
   },
 ];
