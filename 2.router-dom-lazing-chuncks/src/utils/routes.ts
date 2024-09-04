@@ -10,6 +10,12 @@ interface Route {
   Component: LazyExoticComponent<JSXElement> | JSXElement;
 }
 
+/* 
+To rename chunck in wepack this looks
+*/
+/*webpackChunkName: "nameToIdentifyIt" */
+/* In vite package is not necesary the name is the same to component */
+
 const lazy1 = lazy(() => import("../01-lazyload/pages/Lazyload1"));
 const lazy2 = lazy(() => import("../01-lazyload/pages/Lazyload2"));
 const lazy3 = lazy(() => import("../01-lazyload/pages/Lazyload3"));
