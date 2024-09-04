@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { ROUTES } from "./utils/routes";
 
 function App() {
   return (
@@ -7,9 +8,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Navbar />}>
-            <Route index element={<h1>Home</h1>} />
-            <Route path="/about" element={<h1>About us</h1>} />
-            <Route path="/users" element={<h1>Users</h1>} />
+            {ROUTES.map(({ href, Component, id }) => (
+              <Route path={href} element={<Component />} key={id} />
+            ))}
           </Route>
         </Routes>
       </BrowserRouter>
