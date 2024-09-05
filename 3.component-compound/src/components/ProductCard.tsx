@@ -1,10 +1,14 @@
 import ProductContextProvider from "../context/productContext";
 import useProduct from "../hooks/useProduct";
+import AddCartButton from "./partials/AddCartButton";
+import Counter from "./partials/Counter";
+import Details from "./partials/Details";
+import Image from "./partials/Image";
 
-const ProductCard: React.FC<{ children: React.ReactNode[]; id: string }> = ({
-  id,
-  children,
-}) => {
+const ProductCardComponent: React.FC<{
+  children: React.ReactNode[];
+  id: string;
+}> = ({ id, children }) => {
   const { state, increase, decrease, addFav, addCart } = useProduct({ id });
 
   const { product } = state;
@@ -18,4 +22,11 @@ const ProductCard: React.FC<{ children: React.ReactNode[]; id: string }> = ({
   );
 };
 
-export default ProductCard;
+export const ProductCard = Object.assign(ProductCardComponent, {
+  Image,
+  Details,
+  Counter,
+  AddCartButton,
+});
+
+export default ProductCardComponent;
