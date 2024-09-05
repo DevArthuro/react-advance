@@ -25,6 +25,16 @@ const productReducer = (
         product: payload?.product ?? null,
       };
 
+    case "addFavorite":
+      return {
+        ...state,
+        favorite: !state.favorite,
+      };
+    case "addCart":
+      return {
+        ...state,
+        inCart: !state.inCart,
+      };
     default:
       return state;
   }
