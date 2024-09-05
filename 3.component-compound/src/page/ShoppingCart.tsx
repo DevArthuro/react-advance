@@ -1,5 +1,5 @@
 import ProductCard from "../components/ProductCard";
-import ProductImage from "../../public/coffee-mug.png";
+import { PRODUCTS } from "../utils/product";
 
 const ShoppingCart = () => {
   return (
@@ -7,13 +7,9 @@ const ShoppingCart = () => {
       <h1>Produts</h1>
       <hr />
       <div className="products">
-        <ProductCard
-          id="1"
-          title="Coffee"
-          img={ProductImage}
-          price={2100}
-          cantidity={0}
-        />
+        {PRODUCTS.map((product) => (
+          <ProductCard id={product.id} key={product.id} />
+        ))}
       </div>
     </div>
   );
