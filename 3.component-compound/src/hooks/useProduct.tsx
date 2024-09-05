@@ -9,16 +9,15 @@ import {
   increaseCantidityProd,
 } from "../reducer/actions/product";
 import { PRODUCTS } from "../utils/product";
+import { ReturnUseProduct } from "../interfaces/product";
 
 interface Props {
   id: string;
 }
 
-const useProduct = ({ id }: Props) => {
+const useProduct = ({ id }: Props): ReturnUseProduct => {
   const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
   const product = PRODUCTS.find((product) => product.id === id);
-
-  if (!product) return { state };
 
   const increase = () => {
     dispatch(increaseCantidityProd());
@@ -37,7 +36,9 @@ const useProduct = ({ id }: Props) => {
   };
 
   useLayoutEffect(() => {
-    dispatch(addProduct(product));
+    if (product) {
+      dispatch(addProduct(product));
+    }
   }, []);
 
   return {

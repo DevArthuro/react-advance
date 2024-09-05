@@ -1,4 +1,9 @@
+import ProductContextProvider from "../context/productContext";
 import useProduct from "../hooks/useProduct";
+import AddCartButton from "./partials/AddCartButton";
+import Counter from "./partials/Counter";
+import Details from "./partials/Details";
+import Image from "./partials/Image";
 
 const ProductCard: React.FC<{ id: string }> = ({ id }) => {
   const { state, increase, decrease, addFav, addCart } = useProduct({ id });
@@ -6,40 +11,16 @@ const ProductCard: React.FC<{ id: string }> = ({ id }) => {
   const { product } = state;
 
   return (
-    <div className="card">
-      <div className="img">
-        <img src={product?.img} alt="productImage" />
-        <div className="favorite-logo" onClick={addFav}>
-          {state.favorite ? (
-            <i className="favorite fa-solid fa-heart" />
-          ) : (
-            <i className="unfavorite fa-regular fa-heart" />
-          )}
-        </div>
+    <ProductContextProvider
+      value={{ product, redux: { state, increase, decrease, addCart, addFav } }}
+    >
+      <div className="card">
+        <Image />
+        <Details />
+        <Counter />
+        <AddCartButton />
       </div>
-      <div className="details">
-        <span className="title">{product?.title}</span>
-      </div>
-      <div className="cantidity">
-        <div className="rest" onClick={decrease}>
-          -
-        </div>
-        <div className="value">{state.cantidity}</div>
-        <div className="plus" onClick={increase}>
-          +
-        </div>
-      </div>
-      <div className="btn-buy">
-        <div className="price">{product?.price}</div>
-        <button className="add-btn" onClick={addCart}>
-          {state.inCart ? (
-            <i className="fa-solid fa-trash fa-xl" />
-          ) : (
-            <i className="fa-solid fa-cart-shopping fa-xl" />
-          )}
-        </button>
-      </div>
-    </div>
+    </ProductContextProvider>
   );
 };
 
