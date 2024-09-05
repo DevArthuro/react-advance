@@ -103,3 +103,152 @@ body {
     left: 20px;
   }
 }
+
+.card {
+  width: 200px;
+  height: 300px;
+  border: 2px #8fb744 solid;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  padding: 10px;
+  border-radius: 30px;
+  color: #000;
+  background-color: white;
+}
+.card .img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px black solid;
+  color: white;
+}
+.card .img img {
+  width: 120px;
+  height: 120px;
+}
+.card .img .favorite-logo {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: black;
+  padding: 8px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.card .details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  margin: 20px 0;
+  padding: 0.1px;
+}
+.card .details .title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.card .cantidity {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  justify-content: center;
+  height: 40px;
+}
+.card .cantidity div {
+  width: 30px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.card .cantidity .plus,
+.card .cantidity .rest {
+  opacity: 0.6;
+}
+.card .cantidity .plus:hover,
+.card .cantidity .rest:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.card .cantidity .value {
+  width: 40px;
+  height: 40px;
+  background-color: #8fb744;
+  border-radius: 50%;
+}
+.card:hover {
+  background-color: #8fb744;
+}
+.card:hover .cantidity .value {
+  background-color: white;
+}
+.card .btn-buy {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+.card .btn-buy .price {
+  align-self: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.card .btn-buy .price::before {
+  content: "$";
+  padding: 0px 5px;
+}
+.card .btn-buy .add-btn {
+  outline: none;
+  border: 0px;
+  background-color: transparent;
+  padding: 0;
+}
+.card .btn-buy .add-btn i {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 15px;
+}
+.card .btn-buy .add-btn i:hover {
+  color: white;
+  border: white 1px solid;
+  background-color: black;
+}
+
+.products {
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  place-items: center;
+  gap: 10px;
+}
+@media (min-width: 650px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 950px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1150px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

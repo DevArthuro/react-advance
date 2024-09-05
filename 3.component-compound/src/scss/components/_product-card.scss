@@ -1,0 +1,126 @@
+.card {
+  width: 200px;
+  height: 300px;
+  border: 2px #8fb744 solid;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  padding: 10px;
+  border-radius: 30px;
+  color: #000;
+  background-color: white;
+  .img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px black solid;
+    color: white;
+    img {
+      width: 120px;
+      height: 120px;
+    }
+    .favorite-logo {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      background-color: black;
+      padding: 8px;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  .details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    margin: 20px 0;
+    padding: 0.1px;
+    .title {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+  }
+  .cantidity {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    justify-content: center;
+    height: 40px;
+    div {
+      width: 30px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-wrap: wrap;
+    }
+    .plus,
+    .rest {
+      opacity: 0.6;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+    .value {
+      width: 40px;
+      height: 40px;
+      background-color: #8fb744;
+      border-radius: 50%;
+    }
+  }
+  &:hover {
+    background-color: #8fb744;
+    .cantidity {
+      .value {
+        background-color: white;
+      }
+    }
+  }
+  .btn-buy {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    .price {
+      align-self: center;
+      font-size: 1.5rem;
+      font-weight: bolder;
+      &::before {
+        content: "$";
+        padding: 0px 5px;
+      }
+    }
+    .add-btn {
+      outline: none;
+      border: 0px;
+      background-color: transparent;
+      padding: 0;
+      i {
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 15px;
+        &:hover {
+          color: white;
+          border: white 1px solid;
+          background-color: black;
+        }
+      }
+    }
+  }
+}
