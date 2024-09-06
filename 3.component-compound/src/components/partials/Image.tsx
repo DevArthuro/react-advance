@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { ProductContext } from "../../context/productContext";
+import { GlobalProps } from "../../interfaces/product";
 
-const Image = () => {
+const Image = ({ className, style }: GlobalProps) => {
   const {
     product,
     redux: {
@@ -15,7 +16,7 @@ const Image = () => {
   const { img } = product;
 
   return (
-    <div className="img">
+    <div className={`img ${className}`} style={style}>
       <img src={img} alt="productImage" />
       <div className="favorite-logo" onClick={addFav}>
         {favorite ? (

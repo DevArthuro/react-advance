@@ -116,6 +116,9 @@ body {
   color: #000;
   background-color: white;
 }
+.card .dark-mode {
+  background-color: #333;
+}
 .card .img {
   position: relative;
   display: flex;

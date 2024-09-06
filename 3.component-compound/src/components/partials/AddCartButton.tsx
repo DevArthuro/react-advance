@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { ProductContext } from "../../context/productContext";
+import { GlobalProps } from "../../interfaces/product";
 
-const AddCartButton = () => {
+const AddCartButton = ({ style, className }: GlobalProps) => {
   const {
     product,
     redux: {
@@ -15,7 +16,7 @@ const AddCartButton = () => {
   const { price } = product;
 
   return (
-    <div className="btn-buy">
+    <div className={`btn-buy ${className}`} style={style}>
       <div className="price">{price}</div>
       <button className="add-btn" onClick={addCart}>
         {inCart ? (

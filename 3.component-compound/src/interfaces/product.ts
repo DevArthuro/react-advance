@@ -14,3 +14,8 @@ export interface ReturnUseProduct {
   addFav: () => void;
   addCart: () => void;
 }
+
+export interface GlobalProps {
+  style?: React.CSSProperties;
+  className?: string;
+}

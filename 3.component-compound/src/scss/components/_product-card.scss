@@ -9,6 +9,9 @@
   border-radius: 30px;
   color: #000;
   background-color: white;
+  .dark-mode {
+    background-color: #333;
+  }
   .img {
     position: relative;
     display: flex;

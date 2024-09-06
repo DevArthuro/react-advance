@@ -16,8 +16,8 @@ const ShoppingCart = () => {
         {PRODUCTS.map((product) => (
           <ProductCard id={product.id} key={product.id}>
             <Image />
-            <Details />
-            <Counter />
+            <Details style={{ fontStyle: "italic" }} />
+            <Counter className="dark-mode" />
             <AddCartButton />
           </ProductCard>
         ))}
