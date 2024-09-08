@@ -13,8 +13,10 @@ const Products: React.FC<Props> = ({ products }) => {
         <div key={product.id}>
           <ProductContext value={{ product }}>
             <CardComponent>
-              <Card.Title />
               <Card.Image />
+              <Card.Title />
+              <Card.Details />
+              <Card.ButtonCart />
             </CardComponent>
           </ProductContext>
         </div>

@@ -7,9 +7,7 @@ const Shopping = () => {
 
   return (
     <div className="shopping">
-      <div className="products">
-        {products && <Products products={products} />}
-      </div>
+      {products && <Products products={products} />}
     </div>
   );
 };
