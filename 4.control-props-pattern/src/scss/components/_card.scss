@@ -2,7 +2,7 @@
   padding: 20px;
   font-size: 0.9rem;
   width: 300px;
-  height: 370px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -63,14 +63,57 @@
     width: 100px;
     top: 60%;
     left: 60%;
-    &::before {
-      content: "+";
-      font-size: 1.1rem;
-      margin-right: 5px;
-      height: auto;
+    .add {
+      &::before {
+        content: "+";
+        font-size: 1.1rem;
+        margin-right: 5px;
+        height: auto;
+      }
+    }
+    .drop {
+      &::before {
+        content: "-";
+        font-size: 1.1rem;
+        margin-right: 5px;
+        height: auto;
+      }
     }
     &:hover {
       cursor: pointer;
+    }
+  }
+  .product-counter {
+    padding: 5px;
+    text-align: center;
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+      padding: 2px 0;
+      margin: 0;
+      border: 0;
+      border-bottom: 1px solid black;
+      margin: 0 5px;
+      outline: none;
+    }
+    button {
+      font-size: 1.3rem;
+      background-color: transparent;
+      font-weight: bolder;
+      border: 0;
+      cursor: pointer;
+      opacity: 0.6;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

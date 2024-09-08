@@ -1,10 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Shopping from "./pages/Shopping";
-import ShoppingContextProvider from "./context/shoppingContext";
+import ShoppingContextProvider, { CartValue } from "./context/shoppingContext";
 import useProducts from "./hooks/useProducts";
+import { useState } from "react";
 
 function App() {
+  const [cart, setCart] = useState<CartValue[]>([]);
   const { loading, products, error } = useProducts();
 
   if (loading) return <div>Loading {JSON.stringify(loading)}</div>;
@@ -13,7 +15,9 @@ function App() {
 
   return (
     <>
-      <ShoppingContextProvider value={{ products }}>
+      <ShoppingContextProvider
+        value={{ products, cart: { value: cart, setValue: setCart } }}
+      >
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>

@@ -13,7 +13,7 @@ body,
   padding: 20px;
   font-size: 0.9rem;
   width: 300px;
-  height: 370px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -76,14 +76,53 @@ body,
   top: 60%;
   left: 60%;
 }
-.card .add-cart::before {
+.card .add-cart .add::before {
   content: "+";
+  font-size: 1.1rem;
+  margin-right: 5px;
+  height: auto;
+}
+.card .add-cart .drop::before {
+  content: "-";
   font-size: 1.1rem;
   margin-right: 5px;
   height: auto;
 }
 .card .add-cart:hover {
   cursor: pointer;
+}
+.card .product-counter {
+  padding: 5px;
+  text-align: center;
+}
+.card .product-counter input[type=number]::-webkit-inner-spin-button,
+.card .product-counter input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.card .product-counter input[type=number] {
+  -moz-appearance: textfield;
+}
+.card .product-counter input[type=number] {
+  width: 50px;
+  text-align: center;
+  padding: 2px 0;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid black;
+  margin: 0 5px;
+  outline: none;
+}
+.card .product-counter button {
+  font-size: 1.3rem;
+  background-color: transparent;
+  font-weight: bolder;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.card .product-counter button:hover {
+  opacity: 1;
 }
 
 .products {

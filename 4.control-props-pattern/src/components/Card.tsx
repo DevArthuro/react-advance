@@ -1,4 +1,5 @@
 import ButtonCart from "./partials/ButtonCart";
+import Counter from "./partials/Counter";
 import Details from "./partials/Details";
 import Image from "./partials/Image";
 import Title from "./partials/Title";
@@ -12,6 +13,7 @@ interface CompoundComponentType {
   Image: () => JSX.Element;
   Details: () => JSX.Element;
   ButtonCart: () => JSX.Element;
+  Counter: () => JSX.Element;
 }
 
 const CardComponent: React.FC<Props> = ({ children }) => {
@@ -23,6 +25,7 @@ export const Card: CompoundComponentType = Object.assign(CardComponent, {
   Details,
   Title,
   ButtonCart,
+  Counter,
 });
 
 export default CardComponent;
