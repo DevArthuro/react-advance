@@ -6,7 +6,6 @@ body,
 #root {
   margin: 0;
   padding: 0;
-  height: 100vh;
 }
 
 /* Components */
@@ -14,7 +13,7 @@ body,
   padding: 20px;
   font-size: 0.9rem;
   width: 300px;
-  height: auto;
+  height: 370px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -74,7 +73,7 @@ body,
   text-align: center;
   border-radius: 15px;
   width: 100px;
-  top: 65%;
+  top: 60%;
   left: 60%;
 }
 .card .add-cart::before {
@@ -117,8 +116,70 @@ body,
   }
 }
 
+.cart-products, .cart-products-close {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid black;
+  padding: 30px 20px;
+  transform: translateX(0);
+  transition: 0.5s ease-in-out;
+}
+.cart-products .cart-content, .cart-products-close .cart-content {
+  padding-top: 40px;
+  position: relative;
+}
+.cart-products .logo, .cart-products-close .logo {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  cursor: pointer;
+}
+@media (min-width: 700px) {
+  .cart-products, .cart-products-close {
+    width: 50%;
+  }
+}
+@media (min-width: 1250px) {
+  .cart-products, .cart-products-close {
+    width: 35%;
+  }
+}
+
+.cart-products-close {
+  transform: translateX(100%);
+  transition: 0.5s ease-in-out;
+}
+
 /* Pages */
 .shopping {
   height: 100%;
   width: 100%;
+  padding-top: 40px;
+  position: relative;
+}
+.shopping .cart {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+}
+.shopping .cart .cart-logo {
+  width: 60px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.shopping .cart .cart-logo i {
+  display: inline;
+}
+.shopping .cart .cart-logo:hover {
+  cursor: pointer;
 }

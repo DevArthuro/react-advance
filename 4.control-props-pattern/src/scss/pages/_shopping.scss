@@ -1,4 +1,28 @@
 .shopping {
   height: 100%;
   width: 100%;
+  padding-top: 40px;
+  position: relative;
+  .cart {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    .cart-logo {
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      i {
+        display: inline;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

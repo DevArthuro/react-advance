@@ -2,7 +2,7 @@
   padding: 20px;
   font-size: 0.9rem;
   width: 300px;
-  height: auto;
+  height: 370px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -61,7 +61,7 @@
     text-align: center;
     border-radius: 15px;
     width: 100px;
-    top: 65%;
+    top: 60%;
     left: 60%;
     &::before {
       content: "+";
