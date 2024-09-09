@@ -4,7 +4,7 @@ import Products from "../components/Products";
 import CartProducts from "../components/CartProducts";
 
 const Shopping = () => {
-  const { products, cart } = useContext(ShoppingContext);
+  const { products } = useContext(ShoppingContext);
   const [openCart, setOpenCart] = useState(false);
 
   const handlerCart = () => setOpenCart(!openCart);
@@ -18,11 +18,7 @@ const Shopping = () => {
             <i className="fa-solid fa-cart-shopping fa-xl" />
           </div>
         </div>
-        <CartProducts
-          handlerCart={handlerCart}
-          open={openCart}
-          cart={cart?.value}
-        />
+        <CartProducts handlerCart={handlerCart} open={openCart} />
       </div>
     </>
   );

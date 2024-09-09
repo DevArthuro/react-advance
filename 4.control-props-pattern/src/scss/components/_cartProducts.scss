@@ -12,12 +12,92 @@
   .cart-content {
     padding-top: 40px;
     position: relative;
-  }
-  .logo {
-    position: absolute;
-    top: 5%;
-    left: 0;
-    cursor: pointer;
+    height: 100vh;
+    .logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+    .products-cart {
+      height: 80vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .card-cart {
+        max-height: 350px;
+        padding: 10px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid black;
+        .product {
+          gap: 20px;
+          display: flex;
+          .image {
+            margin-top: 20px;
+            position: relative;
+            img {
+              width: 80px;
+              height: 80px;
+            }
+            .cantidity {
+              position: absolute;
+              top: -10%;
+              left: -10%;
+              z-index: 4;
+              color: white;
+              background-color: black;
+              display: inline-block;
+              width: 30px;
+              height: 30px;
+              text-align: center;
+              align-content: center;
+              font-weight: bold;
+              border-radius: 50%;
+            }
+          }
+          .details {
+            gap: 10px;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .title {
+              font-size: 1rem;
+              font-weight: bold;
+            }
+            .category {
+              opacity: 0.6;
+              font-weight: bold;
+            }
+            .price {
+              font-size: 1rem;
+              font-weight: bold;
+              &::before {
+                content: "$";
+                padding-right: 5px;
+              }
+            }
+          }
+        }
+        .trash {
+          cursor: pointer;
+          min-width: 40px;
+          min-height: 40px;
+          background-color: black;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+        }
+      }
+    }
   }
   @media (min-width: 700px) {
     width: 50%;
