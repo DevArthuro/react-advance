@@ -284,7 +284,8 @@ body,
   position: sticky;
   bottom: 0;
   left: 0;
-  padding: 5px;
+  padding: 10px;
+  width: 60px;
 }
 .shopping .cart .cart-logo {
   width: 60px;
@@ -301,4 +302,28 @@ body,
 }
 .shopping .cart .cart-logo:hover {
   cursor: pointer;
+}
+.shopping .total-cart {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  min-width: 120px;
+  max-width: 200px;
+  border-radius: 30px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  z-index: 4;
+}
+.shopping .total-cart .price {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.shopping .total-cart .price::before {
+  content: "Total $";
+  margin-right: 2px;
 }
