@@ -1,6 +1,8 @@
 import { createContext } from "react";
-import { Form } from "../models";
+import { ContextValues } from "../models";
 
-const FormContext = createContext<Form | {}>({});
+export const FormContext = createContext<ContextValues>({
+  contacts: [],
+});
 
 export default FormContext.Provider;

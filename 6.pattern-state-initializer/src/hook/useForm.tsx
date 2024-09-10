@@ -2,12 +2,12 @@ import { useReducer } from "react";
 import { INITIAL_STATE } from "../redux/state";
 import formReducer from "../redux/reducer/formReducer";
 import { AddUser } from "../redux/actions/formActions";
-import { User } from "../models";
+import { AddUserHandler, User } from "../models";
 
 const useForm = () => {
   const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
 
-  const handlerAddUser = ({ id, name, phone }: User) => {
+  const handlerAddUser: AddUserHandler = ({ id, name, phone }: User) => {
     dispatch(AddUser({ id, name, phone }));
   };
 
