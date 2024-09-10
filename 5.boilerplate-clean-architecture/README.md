@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+La arquitecura va de elementos globales usados en toda la app y elementos encapsulados
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Globales
 
-Currently, two official plugins are available:
+Son las carpetas generales like models, redux, styled, components, layaouts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Encapsuladas
 
-## Expanding the ESLint configuration
+En la carpeta pages esta cada una de las páginas que tendran una carpeta con el nombre de la vista y dentro va
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Components: los que componen esa vista en especifico
+- models: Los tipos de esa vista en especifico
+- Services: Los que hacen el llamado a la api (deben ser lo suficientemente flexibles si el endpoint llega a cambian)
+- Adapter: Estos se combinan con los services y lo que hacen es intermediar el response y solo botar la data necesaria para que el servicio me responda y tener el control de esos flujos si de pronto se modifica que un dato no llegue solo es cambiar el adaptador
+- Afuera de la carpeta encontramos el archivo de la vista que es el mismo nombre de la carpeta y un index que hace las veces de barril
 
-- Configure the top-level `parserOptions` property like this:
+Nota: Cada vista debe ser cargada por lazy loading para que sea lo sificientemente eficiente la app y que los componentes de esa carpeta se cargen bajo el scope asociado a la vista
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+# Enrrutamiento
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Debe crearse una carpeta rutas donde se estructura las rutas protejidas y el flujo de la aplicacion en el archivo app solo se exponen los providers y la ruta de acceso o layout el resto debe ser externo
