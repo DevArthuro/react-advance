@@ -3,7 +3,7 @@ import { User } from "../models";
 import { userReducer } from "./slices";
 
 export interface AppReducer {
-  user: User;
+  user: User | {};
 }
 
 export default configureStore<AppReducer>({

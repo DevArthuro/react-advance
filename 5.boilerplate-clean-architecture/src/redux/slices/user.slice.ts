@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../../models";
 
-const INITIAL_STATE: User = {
-  id: null,
-  name: null,
-};
+const INITIAL_STATE: User | {} = {};
 
 export const userSlice = createSlice({
   name: "user",
