@@ -1,0 +1,79 @@
+.modal-add-user {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-color: #1a1c2f;
+  padding: 20px;
+  visibility: hidden;
+  color: white;
+  border-radius: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .title {
+    position: relative;
+    font-size: 1.4rem;
+    align-self: center;
+    text-transform: uppercase;
+    display: inline;
+    width: 100%;
+    text-align: center;
+    .logo {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: left;
+    height: 100%;
+    input {
+      border: 1px solid gray;
+      outline: 0;
+      padding: 10px;
+      width: 100%;
+      border-radius: 15px;
+      color: gray;
+      font-weight: bolder;
+      font-size: 1rem;
+    }
+    input[type="submit"] {
+      width: 150px;
+      height: 40px;
+      background-color: white;
+      color: black;
+      border-radius: 30px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .modal-add-user {
+    width: 400px;
+    height: 350px;
+    padding: 50px;
+    top: 30%;
+    .title {
+      font-size: 1.6rem;
+      .logo {
+        top: -10px;
+      }
+    }
+  }
+}
+
+.show-modal {
+  visibility: visible;
+}
