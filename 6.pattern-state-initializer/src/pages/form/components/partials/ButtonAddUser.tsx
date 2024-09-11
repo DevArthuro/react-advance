@@ -4,7 +4,7 @@ interface Props {
 
 const ButtonAddUser: React.FC<Props> = ({ openModal }) => {
   return (
-    <div>
+    <div className="button">
       <button onClick={openModal}>Agregar</button>
     </div>
   );

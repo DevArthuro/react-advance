@@ -1,0 +1,36 @@
+.form-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+  .button {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    button {
+      padding: 5px;
+      width: 120px;
+      height: 50px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      background-color: transparent;
+      font-weight: bold;
+      border: 1px solid gray;
+      &:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+      &::after {
+        content: "+";
+        font-size: 1.2rem;
+        margin-left: 5px;
+      }
+    }
+  }
+}

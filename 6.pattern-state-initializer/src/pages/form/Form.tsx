@@ -26,7 +26,7 @@ const Form = () => {
 
   return (
     <>
-      <div className="form">
+      <div className="form-contacts">
         <FormCompounedComponent title="Titulo random">
           {({ title, contacts }) => (
             <>

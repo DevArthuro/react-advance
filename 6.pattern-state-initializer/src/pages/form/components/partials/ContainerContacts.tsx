@@ -1,4 +1,5 @@
 import { User } from "../../../../models";
+import Contact from "./Contact";
 
 interface Props {
   contacts: User[];
@@ -6,9 +7,9 @@ interface Props {
 
 const ContainerContacts: React.FC<Props> = ({ contacts }) => {
   return (
-    <div>
+    <div className="container-contacts">
       {contacts.length > 0 ? (
-        contacts.map((user) => <div>{JSON.stringify(user)}</div>)
+        contacts.map((user) => <Contact user={user} key={user.id} />)
       ) : (
         <div>There aren't contacts</div>
       )}

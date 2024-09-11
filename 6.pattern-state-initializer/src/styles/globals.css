@@ -1,3 +1,40 @@
+.form-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.form-contacts h1 {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+}
+.form-contacts .button {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+.form-contacts .button button {
+  padding: 5px;
+  width: 120px;
+  height: 50px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-weight: bold;
+  border: 1px solid gray;
+}
+.form-contacts .button button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.form-contacts .button button::after {
+  content: "+";
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
 .modal-add-user {
   position: fixed;
   top: 50%;
@@ -86,4 +123,68 @@
 body {
   max-width: 1250px;
   margin: auto;
+}
+
+.container-contacts {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 1px gray dashed;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+}
+.contact-card .img-details {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.contact-card .img-details img {
+  width: 50px;
+  border-radius: 50%;
+}
+.contact-card .img-details .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: bolder;
+}
+.contact-card .img-details .details .name {
+  font-size: 1.2rem;
+}
+.contact-card .img-details .details .phone {
+  color: gray;
+}
+.contact-card .img-details .details .phone:hover {
+  color: green;
+  cursor: pointer;
+}
+.contact-card .actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.contact-card .actions div {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  align-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.contact-card .actions div:hover {
+  transform: scale(1.1);
 }

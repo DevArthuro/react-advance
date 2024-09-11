@@ -1,0 +1,56 @@
+.contact-card {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 1px gray dashed;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  .img-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    img {
+      width: 50px;
+      border-radius: 50%;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-weight: bolder;
+      .name {
+        font-size: 1.2rem;
+      }
+      .phone {
+        color: gray;
+        &:hover {
+          color: green;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    div {
+      width: 50px;
+      height: 50px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      align-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
