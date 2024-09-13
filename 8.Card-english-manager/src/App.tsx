@@ -1,9 +1,16 @@
-import { useSelector } from "react-redux";
-import { authUserSelector } from "./store/selectors/auth";
+import { Outlet } from "react-router-dom";
+import PublicWraper from "./routes/wraps/public";
+import { Suspense } from "react";
 
 function App() {
-  const user = useSelector(authUserSelector);
-  return <>{JSON.stringify(user)}</>;
+  return (
+    <>
+      <PublicWraper />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </>
+  );
 }
 
 export default App;
