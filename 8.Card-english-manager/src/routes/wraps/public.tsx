@@ -5,7 +5,7 @@ const PublicWraper = () => {
   return (
     <>
       <Routes>
-        {PUBLIC_ROUTES().map(({ id, path, component: Component }) => (
+        {PUBLIC_ROUTES().map(({ id, path, Component }) => (
           <Route key={id} path={path} element={<Component />} />
         ))}
       </Routes>

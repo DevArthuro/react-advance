@@ -2,13 +2,13 @@ import { INITIAL_STATE_AUTH_TYPE } from "../state";
 
 export interface ACTION_SAVE {
   payload: {
-    user: INITIAL_STATE_AUTH_TYPE;
+    user: Omit<INITIAL_STATE_AUTH_TYPE, "isLogged">;
   };
 }
 
 export const saveUserAuth = (
-  state: INITIAL_STATE_AUTH_TYPE,
+  _: INITIAL_STATE_AUTH_TYPE,
   action: ACTION_SAVE
 ): INITIAL_STATE_AUTH_TYPE => {
-  return { ...state, ...action.payload };
+  return { ...action.payload.user, isLogged: true };
 };

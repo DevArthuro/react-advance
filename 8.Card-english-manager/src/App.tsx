@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
 import PublicWraper from "./routes/wraps/public";
-import { Suspense } from "react";
+import PrivateWraper from "./routes/wraps/private";
 
 function App() {
   return (
     <>
+      <PrivateWraper />
       <PublicWraper />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </>
   );
 }

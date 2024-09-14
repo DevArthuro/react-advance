@@ -1,9 +1,15 @@
-interface Props {
-  children: React.ReactNode;
-}
+import { useSelector } from "react-redux";
+import { authUserSelector } from "../store/selectors/auth";
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoutes: React.FC<Props> = ({ children }) => {
-  return <>{children}</>;
+const ProtectedRoutes = () => {
+  const { isLogged } = useSelector(authUserSelector);
+
+  if (!isLogged) {
+    return <Navigate to="login" replace />;
+  }
+
+  return <></>;
 };
 
 export default ProtectedRoutes;

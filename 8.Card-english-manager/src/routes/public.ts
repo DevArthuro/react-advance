@@ -3,19 +3,37 @@ import { ROUTE } from "./type";
 import { lazy } from "react";
 
 type PUBLIC_ROUTE_TYPE = ROUTE & {
-  component: React.LazyExoticComponent<() => JSX.Element>;
+  Component: React.LazyExoticComponent<() => JSX.Element>;
 };
 
-const LoginComponent = lazy(() => import("../pages/login"));
+const LoginComponent = lazy(() => import("../pages/Login"));
+const RegisterComponent = lazy(() => import("../pages/Register"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
 
 const PUBLIC_ROUTES = (): PUBLIC_ROUTE_TYPE[] => [
   {
     id: v4(),
     path: "login",
-    href: "/login",
+    href: "login",
     isPublic: true,
     name: "login",
-    component: LoginComponent,
+    Component: LoginComponent,
+  },
+  {
+    id: v4(),
+    path: "register",
+    href: "register",
+    isPublic: true,
+    name: "register",
+    Component: RegisterComponent,
+  },
+  {
+    id: v4(),
+    path: "forgot-password",
+    href: "forgot-password",
+    isPublic: true,
+    name: "forgot password",
+    Component: ForgotPassword,
   },
 ];
 
