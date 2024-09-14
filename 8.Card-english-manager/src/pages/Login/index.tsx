@@ -1,5 +1,12 @@
+import CardLogin from "./components/CardLogin";
+import "./sass/index.scss";
+
 const Login = () => {
-  return <div>Login</div>;
+  return (
+    <>
+      <CardLogin />
+    </>
+  );
 };
 
 export default Login;
