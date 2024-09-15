@@ -3,9 +3,11 @@ import { authUserSelector } from "../store/selectors/auth";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoutes = () => {
-  const { isLogged } = useSelector(authUserSelector);
+  const {
+    user: { isLogged, token },
+  } = useSelector(authUserSelector);
 
-  if (!isLogged) {
+  if (!isLogged && !token) {
     return <Navigate to="login" replace />;
   }
 

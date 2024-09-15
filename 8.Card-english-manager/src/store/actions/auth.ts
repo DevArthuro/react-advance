@@ -1,14 +1,28 @@
-import { INITIAL_STATE_AUTH_TYPE } from "../state";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import UserService from "../../services/user";
+import { User } from "../../models";
 
-export interface ACTION_SAVE {
-  payload: {
-    user: Omit<INITIAL_STATE_AUTH_TYPE, "isLogged">;
-  };
+/** Types */
+export interface LOGIN_TYPE {
+  user: Omit<User, "token" | "refresh" | "isLogged">;
 }
 
-export const saveUserAuth = (
-  _: INITIAL_STATE_AUTH_TYPE,
-  action: ACTION_SAVE
-): INITIAL_STATE_AUTH_TYPE => {
-  return { ...action.payload.user, isLogged: true };
-};
+/** Variables needs */
+const user = new UserService();
+
+/** Actions */
+
+export const LoginUser = createAsyncThunk<User, LOGIN_TYPE>(
+  "auth/login",
+  async ({ ...data }: LOGIN_TYPE): Promise<User> => {
+    const { email, password } = data.user;
+
+    if (!email || !password)
+      return { ...data.user, isLogged: false, token: null, refresh: null };
+    const auth = await user.loginUser({ email: email, password: password });
+
+    if (!auth)
+      return { ...data.user, isLogged: false, token: null, refresh: null };
+    return { ...data.user, isLogged: true, ...auth };
+  }
+);
