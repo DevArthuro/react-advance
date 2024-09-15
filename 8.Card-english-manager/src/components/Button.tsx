@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
+import "../sass/button.scss";
 
 interface Props {
   title: string;
@@ -6,7 +7,11 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ title, attributes }) => {
-  return <button {...attributes}>{title}</button>;
+  return (
+    <button className="global-button" {...attributes}>
+      {title}
+    </button>
+  );
 };
 
 export default Button;

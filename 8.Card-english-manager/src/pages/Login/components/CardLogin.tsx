@@ -1,4 +1,4 @@
-import Button from "./partials/Button";
+import Button from "../../../components/Button";
 import Footer from "./partials/Footer";
 import Header from "./partials/Header";
 import Input from "./partials/InputText";

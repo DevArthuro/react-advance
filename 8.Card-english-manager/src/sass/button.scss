@@ -1,0 +1,14 @@
+button {
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  outline: none;
+  border-radius: 30px;
+  background-color: #fecc30;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bolder;
+  &:hover {
+    opacity: 0.8;
+  }
+}
