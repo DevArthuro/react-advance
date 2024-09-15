@@ -1,3 +1,115 @@
-.login {
-  background-color: aqua;
+.login-container {
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  .form {
+    width: 100%;
+    max-width: 380px;
+    max-height: 640px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 30px 20px;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .header-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding: 0 40px;
+      .title {
+        text-align: center;
+        h1 {
+          font-size: 1.4rem;
+          &::after {
+            content: "!";
+          }
+        }
+        p {
+          font-size: 1rem;
+          opacity: 0.7;
+          margin-top: 8px;
+        }
+      }
+    }
+    .form-login {
+      padding: 20px 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        & > div {
+          width: 100%;
+          height: 60px;
+          position: relative;
+          input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: 0;
+            background-color: #f6f6f6;
+            border-radius: 30px;
+            padding: 25px 20px;
+            font-size: 0.8rem;
+            &[type="password"] {
+              letter-spacing: 4px;
+              font-size: 0.9rem;
+              opacity: 0.8;
+            }
+          }
+
+          label {
+            position: absolute;
+            top: 8px;
+            left: 20px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+          }
+        }
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        button {
+          width: 100%;
+          height: 40px;
+          border: 0px;
+          outline: none;
+          border-radius: 30px;
+          background-color: #fecc30;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          font-weight: bolder;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+    .footer-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: #ffc821;
+        font-weight: bolder;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }

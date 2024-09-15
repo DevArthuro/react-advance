@@ -3,9 +3,9 @@ import "./sass/index.scss";
 
 const Login = () => {
   return (
-    <>
+    <div className="login-container">
       <CardLogin />
-    </>
+    </div>
   );
 };
 
