@@ -1,7 +1,7 @@
 import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 import Footer from "./partials/Footer";
 import Header from "./partials/Header";
-import Input from "./partials/InputText";
 
 const CardLogin = () => {
   return (
@@ -14,21 +14,18 @@ const CardLogin = () => {
         className="form-login"
       >
         <div className="inputs">
-          <div className="email">
-            <Input title="Email" className="email" id="email" type="email">
-              <label htmlFor="email">Email</label>
-            </Input>
-          </div>
-          <div className="password">
-            <Input
-              className="password"
-              id="password"
-              title="Password"
-              type="password"
-            >
-              <label htmlFor="password">Password</label>
-            </Input>
-          </div>
+          <Input
+            title="Email"
+            className="email"
+            id="email"
+            attributes={{ type: "email" }}
+          />
+          <Input
+            className="password"
+            id="password"
+            title="Password"
+            attributes={{ type: "password" }}
+          />
         </div>
         <div className="buttons">
           <Button
