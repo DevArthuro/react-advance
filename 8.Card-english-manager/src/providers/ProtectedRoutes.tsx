@@ -1,15 +1,9 @@
 import { useSelector } from "react-redux";
-import { authUserSelector } from "../store/selectors/auth";
 import { Navigate } from "react-router-dom";
+import { rootSelector } from "../store/selector/auth";
 
 const ProtectedRoutes = () => {
-  const {
-    user: { isLogged, token },
-  } = useSelector(authUserSelector);
-
-  if (!isLogged && !token) {
-    return <Navigate to="login" replace />;
-  }
+  const state = useSelector(rootSelector);
 
   return <></>;
 };

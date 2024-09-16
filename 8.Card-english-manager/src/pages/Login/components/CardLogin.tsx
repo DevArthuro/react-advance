@@ -1,31 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Footer from "./partials/Footer";
 import Header from "./partials/Header";
 import { useRef } from "react";
-import { AppDispatch } from "../../../models";
-import { LoginUser } from "../../../store/actions/auth";
-import { authUserSelector } from "../../../store/selectors/auth";
+import { LOGIN_RETURN_ERROR, useLoginMutation } from "../../../store/api/auth";
 
 const CardLogin = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const [login, { isLoading, isError, error }] = useLoginMutation();
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const {
-    loading,
-    user: { isLogged },
-  } = useSelector(authUserSelector);
-
-  const loginUser = ({
+  const loginUser = async ({
     email,
     password,
   }: {
     email: string;
     password: string;
   }) => {
-    dispatch(LoginUser({ user: { email, password, name: email } }));
+    try {
+      const user = await login({ email, password }).unwrap();
+      console.log("Succed", user);
+    } catch (e) {
+      console.error(error);
+    }
   };
 
   return (
@@ -42,6 +39,12 @@ const CardLogin = () => {
         }}
         className="form-login"
       >
+        {isError && (
+          <p className="text-error">
+            {"* "}
+            {(error as LOGIN_RETURN_ERROR).data.errors.join("\n")}
+          </p>
+        )}
         <div className="inputs">
           <Input
             title="Email"
@@ -60,7 +63,7 @@ const CardLogin = () => {
           <Button
             title="Login"
             attributes={{
-              disabled: loading || isLogged,
+              disabled: isLoading,
               type: "submit",
               className: "button-login",
             }}

@@ -28,10 +28,10 @@ const CardRegister = () => {
               title="Password"
             />
             <Input
-              className="password"
+              className="password-retry"
               attributes={{ type: "password" }}
-              id="password"
-              title="Password"
+              id="password-retry"
+              title="Password retry"
             />
           </div>
           <Button title="Register" attributes={{ type: "submit" }} />
