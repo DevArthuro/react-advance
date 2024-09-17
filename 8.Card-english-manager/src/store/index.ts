@@ -8,11 +8,11 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage: storageSession,
-  whitelist: ["user"],
+  whitelist: ["auth"],
 };
 
 const rootReducer = combineReducers({
-  user: authReducer,
+  auth: authReducer,
   [loginUserApi.reducerPath]: loginUserApi.reducer,
 });
 

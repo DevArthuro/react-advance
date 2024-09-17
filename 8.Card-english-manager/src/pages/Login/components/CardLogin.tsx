@@ -4,11 +4,17 @@ import Footer from "./partials/Footer";
 import Header from "./partials/Header";
 import { useRef } from "react";
 import { LOGIN_RETURN_ERROR, useLoginMutation } from "../../../store/api/auth";
+import { saveDataAuth } from "../../../store/slice/auth";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { useNavigate } from "react-router-dom";
 
 const CardLogin = () => {
   const [login, { isLoading, isError, error }] = useLoginMutation();
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const loginUser = async ({
     email,
@@ -19,7 +25,8 @@ const CardLogin = () => {
   }) => {
     try {
       const user = await login({ email, password }).unwrap();
-      console.log("Succed", user);
+      dispatch(saveDataAuth({ user }));
+      navigate("/", { replace: true });
     } catch (e) {
       console.error(error);
     }

@@ -34,8 +34,9 @@ export const loginUserApi = createApi({
       }),
       transformResponse: (response: LOGIN_TYPE, _, args): User => {
         const { token, refreshToken } = response;
+
         return {
-          ...args,
+          email: args.email,
           token,
           refresh: refreshToken,
           name: args.email,
