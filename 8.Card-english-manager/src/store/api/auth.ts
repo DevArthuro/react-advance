@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { ENV_API } from "../../utils/variables_env";
 import { User } from "../../models";
+import { v4 } from "uuid";
 
 type LOGIN_TYPE = Pick<User, "token"> & { refreshToken: string };
 export type LOGIN_RETURN_ERROR = {
@@ -47,7 +48,18 @@ export const loginUserApi = createApi({
         response
       ): LOGIN_RETURN_ERROR | FetchBaseQueryError => response,
     }),
+    register: builder.mutation<boolean, { email: string; password: string }>({
+      query: (data) => ({
+        url: "register",
+        method: "POST",
+        body: { ...data, role: v4() },
+      }),
+      transformResponse: (): boolean => true,
+      transformErrorResponse: (
+        response
+      ): LOGIN_RETURN_ERROR | FetchBaseQueryError => response,
+    }),
   }),
 });
 
-export const { useLoginMutation } = loginUserApi;
+export const { useLoginMutation, useRegisterMutation } = loginUserApi;
