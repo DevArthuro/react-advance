@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 import ProductsList from "./components/ProductsList";
 import { changeOrderByPrice } from "./utils/handlerOrderProducts";
 
-const initialProducts = [
+export const initialProducts = [
   {
     id: v4(),
     name: "Tomates",
