@@ -1,15 +1,5 @@
 import { describe, expect, it } from "vitest";
-
-const fizzbuzz = (number: number) => {
-  if (typeof number !== "number") throw new Error("Number is not a number");
-  if (Number.isNaN(number)) throw new Error("Not must to be NaN parameter");
-
-  if (number % 3 === 0 && number % 5 === 0) return "fizzbuzz";
-  if (number % 3 === 0) return "fizz";
-  if (number % 5 === 0) return "buzz";
-
-  return number;
-};
+import { fizzbuzz } from "../utils/fizzBuzz";
 
 describe("fizzbuzz", () => {
   // ** it test is cover
@@ -48,5 +38,13 @@ describe("fizzbuzz", () => {
   it("Should return 'fizzbuzz' is number multiple of both", () => {
     expect(fizzbuzz(15)).toEqual("fizzbuzz");
     expect(fizzbuzz(30)).toEqual("fizzbuzz");
+  });
+
+  it("should return 'worf when is multiply of 7'", () => {
+    expect(fizzbuzz(7)).toEqual("worf");
+  });
+
+  it("if the number is multiple of 3 and 7 should return 'fizzworf'", () => {
+    expect(fizzbuzz(21)).toEqual("fizzworf");
   });
 });
