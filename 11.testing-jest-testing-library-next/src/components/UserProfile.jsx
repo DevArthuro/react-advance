@@ -2,7 +2,12 @@ const UserProfile = ({ displayName, username, email, isEmailVerified }) => {
   return (
     <div>
       <div>
-        <span>Display name: {displayName}</span>
+        <span>
+          Display name:{" "}
+          {displayName.length > 30
+            ? displayName.slice(0, 27).concat("...")
+            : displayName}
+        </span>
       </div>
       <div>
         <span>Username: {username}</span>

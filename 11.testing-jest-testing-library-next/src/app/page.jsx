@@ -1,5 +1,6 @@
 "use client";
 
+import UserProfile from "@/components/UserProfile";
 import { useState } from "react";
 
 export default function Home() {
@@ -26,6 +27,15 @@ export default function Home() {
       <div>
         {showText && <span>This is the text!</span>}
         <button onClick={() => setShowText(!showText)}>Show Text</button>
+      </div>
+      <div>
+        <h1>User Profile</h1>
+        <UserProfile
+          displayName="lasjdflksdjflkjdfskjafsdkjfdkjasdkfljkldfj"
+          email="carlos.o9rrego38@gmail.com"
+          isEmailVerified={true}
+          username="Carloso"
+        />
       </div>
     </main>
   );
