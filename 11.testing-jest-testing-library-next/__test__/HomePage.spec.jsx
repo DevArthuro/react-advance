@@ -1,5 +1,6 @@
 import Home from "@/app/page";
-import { render, cleanup, screen } from "@testing-library/react";
+import { render, cleanup, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 describe("Home Page", () => {
   describe("Rendering", () => {
@@ -43,8 +44,36 @@ describe("Home Page", () => {
     });
   });
   describe("Behavior", () => {
-    it("Should click on show text button and find new text", () => {
+    it("Should click on show text button and find new text", async () => {
       render(<Home />);
+      expect(screen.queryByText("This is the text!")).not.toBeInTheDocument();
+      const showTextButton = screen.getByRole("button", { name: "Show Text" });
+      await userEvent.click(showTextButton);
+      // In some cases this not apper inmediattle.
+      //expect(screen.getByText("This is the text!")).toBeInTheDocument();
+
+      // Need use waitfor
+      // await waitFor(
+      //   () => {
+      //     expect(screen.getByText("This is the text!")).toBeInTheDocument();
+      //   },
+      //   {
+      //     // It can be modified depends of the times
+      //     timeout: 1200,
+      //   }
+      // );
+
+      // Note: this is the way recommended
+      // If you need conbined the get and waitFor use query find
+      expect(
+        await screen.findByText(
+          "This is the text!",
+          {},
+          {
+            timeout: 1200,
+          }
+        )
+      ).toBeInTheDocument();
     });
   });
 });
