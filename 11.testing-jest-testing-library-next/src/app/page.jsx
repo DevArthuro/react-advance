@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [showText, setShowText] = useState(false);
+
   return (
     <main>
       <h1>Home page</h1>
@@ -13,6 +19,13 @@ export default function Home() {
       </div>
       <div>
         <input type="text" placeholder="Searching..." />
+      </div>
+      <div>
+        <input type="text" value="Audi Q5" />
+      </div>
+      <div>
+        {showText && <span>This is the text!</span>}
+        <button onClick={() => setShowText(!showText)}>Show Text</button>
       </div>
     </main>
   );
