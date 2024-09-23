@@ -22,7 +22,7 @@ export default function Home() {
         <input type="text" placeholder="Searching..." />
       </div>
       <div>
-        <input type="text" value="Audi Q5" />
+        <input type="text" defaultValue="Audi Q5" />
       </div>
       <div>
         {showText && <span>This is the text!</span>}
