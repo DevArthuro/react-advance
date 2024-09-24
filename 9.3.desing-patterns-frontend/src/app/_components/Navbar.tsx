@@ -19,6 +19,9 @@ const Navbar: React.FC<Props> = ({ children }) => {
           <li>
             <Link href="/presentational">Presentational Container</Link>
           </li>
+          <li>
+            <Link href="/provider">Provider</Link>
+          </li>
         </ul>
       </nav>
       {children}
