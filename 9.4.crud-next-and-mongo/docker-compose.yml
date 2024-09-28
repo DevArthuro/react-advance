@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  mongoDB:
+    container_name: mongoDB
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - crud
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - ./databases/mongodb:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  mongo-express:
+    container_name: mongo_express
+    image: mongo-express:1.0.2-20-alpine3.19
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongoDB:27017/
+      ME_CONFIG_BASICAUTH: 0
+    networks:
+      - crud
+    depends_on:
+      mongoDB:
+        condition: service_healthy
+
+networks:
+  crud: {}
