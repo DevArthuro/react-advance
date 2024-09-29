@@ -1,13 +1,15 @@
 import ManageTasks from "@/components/ManageTask";
 import Task from "@/components/Task";
-import useTasks from "@/hooks/useTasks";
 import { TASK_TYPE } from "@/types/task";
 
 export default async function Home() {
   const tasksReq: TASK_TYPE[] = await getTasks();
   return (
     <>
-      <ManageTasks tasks={tasksReq} className="grid grid-cols-3 gap-2">
+      <ManageTasks
+        tasks={tasksReq}
+        className="grid gird-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2"
+      >
         {({ tasks }) => (
           <>
             {tasks.map((task) => (

@@ -6,7 +6,6 @@ export async function GET() {
   await connectDb();
 
   const tasks = await TaskModel.find();
-
   return NextResponse.json(tasks);
 }
 
