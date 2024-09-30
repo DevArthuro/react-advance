@@ -10,7 +10,7 @@ const Task: React.FC<TASK_TYPE> = (task) => {
         <p> {task.description}</p>
       </div>
       <div className="grid gird-rows-2 gap-4 place-content-center">
-        <ButtonUpdate />
+        <ButtonUpdate id={task._id} />
         <ButtonDelete />
       </div>
     </div>

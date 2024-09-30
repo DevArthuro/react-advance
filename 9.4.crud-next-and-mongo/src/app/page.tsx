@@ -1,3 +1,4 @@
+import React from "react";
 import ManageTasks from "@/components/ManageTask";
 import Task from "@/components/Task";
 import { TASK_TYPE } from "@/types/task";
@@ -25,7 +26,9 @@ export default async function Home() {
 async function getTasks() {
   const BASE_URL_API = process.env.BASE_URL as string;
   try {
-    const response = await fetch(`${BASE_URL_API}/tasks`);
+    const response = await fetch(`${BASE_URL_API}/tasks/`, {
+      cache: "no-store",
+    });
     const tasks = await response.json();
     return tasks;
   } catch (error) {

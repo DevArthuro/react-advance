@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+import Form from "@/components/Form";
 import { FormEvent, useMemo, useState } from "react";
 
 const Page = () => {
@@ -17,9 +19,8 @@ const Page = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const BASE_URL_API = "http://localhost:3000/api";
       const body = { title: task.title, description: task.description };
-      const response = await fetch(`${BASE_URL_API}/tasks`, {
+      const response = await fetch(`/api/tasks`, {
         method: "POST",
         body: JSON.stringify(body),
       });
@@ -34,37 +35,15 @@ const Page = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-7rem)] flex flex-col justify-center items-center">
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          className="bg-gray-800 border-2 w-full p-4 rounded-lg my-4"
-          onChange={(e) =>
-            setTask((prev) => ({ ...prev, title: e.target.value }))
-          }
-          value={task.title ?? ""}
-        />
-        <textarea
-          onChange={(e) =>
-            setTask((prev) => ({ ...prev, description: e.target.value }))
-          }
-          rows={3}
-          name="description"
-          placeholder="Description"
-          className="bg-gray-800 border-2 w-full p-4 rounded-lg my-4"
-          value={task.description ?? ""}
-        />
-        <button
-          className="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg"
-          disabled={!isDisabled}
-        >
-          Save
-        </button>
-      </form>
-    </div>
+    <>
+      <Form
+        setTask={setTask}
+        task={task}
+        handleSubmit={handleSubmit}
+        isDisabled={isDisabled}
+        message={message}
+      />
+    </>
   );
 };
 
