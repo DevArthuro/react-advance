@@ -27,7 +27,7 @@ export async function GET(req: NextRequest, { params: { id } }: Params) {
   }
 }
 
-export async function PUT(req: NextRequest, { params: { id } }: Params) {
+export async function PATCH(req: NextRequest, { params: { id } }: Params) {
   await connectDb();
   const body = await req.json();
 

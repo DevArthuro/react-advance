@@ -1,11 +1,19 @@
+import React from "react";
+import { TASK_TYPE } from "@/types/task";
+import FormUpdated from "@/components/FormUpdated";
 import { redirect, RedirectType } from "next/navigation";
 
 const page = async ({ params: { id } }: { params: { id: string } }) => {
-  const task = await getTask(id);
-  if (!task) {
+  const taskReq: TASK_TYPE = await getTask(id);
+  if (!taskReq) {
     redirect("/", RedirectType.replace);
   }
-  return <div>{task.title}</div>;
+
+  return (
+    <>
+      <FormUpdated taskReq={taskReq} />
+    </>
+  );
 };
 
 async function getTask(id: string) {
