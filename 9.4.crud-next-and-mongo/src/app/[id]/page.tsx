@@ -11,7 +11,9 @@ const page = async ({ params: { id } }: { params: { id: string } }) => {
 async function getTask(id: string) {
   const BASE_URL_API = process.env.BASE_URL as string;
   try {
-    const response = await fetch(`${BASE_URL_API}/tasks/${id}`);
+    const response = await fetch(`${BASE_URL_API}/tasks/${id}`, {
+      cache: "no-cache",
+    });
     const data = await response.json();
     if (data?.error) throw new Error(data?.message ?? "Tasks Not found");
     return data;

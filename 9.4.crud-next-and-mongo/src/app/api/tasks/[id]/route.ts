@@ -12,6 +12,7 @@ export async function GET(req: NextRequest, { params: { id } }: Params) {
   await connectDb();
 
   try {
+    if (!id) throw new Error("Id is not provided");
     const task = await taskModel.findById(id);
     return NextResponse.json(task);
   } catch (error) {

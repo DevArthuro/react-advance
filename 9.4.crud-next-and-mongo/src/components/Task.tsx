@@ -11,7 +11,7 @@ const Task: React.FC<TASK_TYPE> = (task) => {
       </div>
       <div className="grid gird-rows-2 gap-4 place-content-center">
         <ButtonUpdate id={task._id} />
-        <ButtonDelete />
+        <ButtonDelete id={task._id} />
       </div>
     </div>
   );

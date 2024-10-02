@@ -24,7 +24,15 @@ const Form: React.FC<Props> = ({
   isDisabled = false,
 }) => {
   return (
-    <div className="h-[calc(100vh-7rem)] flex flex-col justify-center items-center">
+    <div className="h-[calc(100vh-7rem)] flex flex-col justify-center items-center relative">
+      <button
+        onClick={() => {
+          window.location.href = "/";
+        }}
+        className="px-8 py-2 border-2 border-solid rounded-xl absolute top-0 left-0 m-2"
+      >
+        Back
+      </button>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <input
