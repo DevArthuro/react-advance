@@ -5,10 +5,10 @@ function App() {
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const hasMore = useRef(true);
   const observer = useRef<IntersectionObserver>();
 
-  const getAllPosts = async () => {
+  const getAllPosts = useCallback(async () => {
     setLoading(true);
     const response: [] = await getPosts(page, 10);
     if ("error" in response) {
@@ -16,26 +16,35 @@ function App() {
       setLoading(false);
       return;
     }
-    setPosts((prev) => [...prev, ...response]);
+    if (response.length === 0) {
+      hasMore.current = false;
+    } else {
+      setPosts((prev) => [...prev, ...response]);
+    }
     setLoading(false);
-  };
+  }, [page]);
 
-  const lastPostElementRef = useCallback((node: Element) => {
-    if (loading) return;
+  const lastPostElementRef = useCallback(
+    (node: Element) => {
+      if (loading || !hasMore.current) return;
 
-    if (observer.current) observer.current.disconnect();
+      if (observer.current) observer.current.disconnect();
 
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setPage((prev) => prev + 1);
-      }
-    });
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore.current) {
+          setPage((prev) => prev + 1);
+        }
+      });
 
-    if (node) observer.current.observe(node);
-  }, []);
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   useEffect(() => {
-    getAllPosts();
+    if (hasMore.current) {
+      getAllPosts();
+    }
   }, [page]);
 
   return (
