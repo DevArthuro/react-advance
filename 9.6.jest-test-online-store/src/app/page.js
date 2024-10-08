@@ -53,31 +53,37 @@ export default function Home() {
         }}
       />
 
-      <h1>All Categories</h1>
-      {categories && categories.length > 0 ? (
-        <ul role="list-categories">
-          {categories.map((category) => (
-            <li key={category.id} role="parent-category">
-              <h2>{category.name}</h2>
-              <ul role="list-category-products">
-                {products.map((product) => {
-                  if (product.category.id === category.id) {
-                    return (
-                      <li key={`${category.id}-${product.id}`}>
-                        {product.title}
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </li>
-          ))}
-        </ul>
+      {!search ? (
+        <>
+          <h1>All Categories</h1>
+          {categories && categories.length > 0 ? (
+            <ul role="list-categories">
+              {categories.map((category) => (
+                <li key={category.id} role="parent-category">
+                  <h2>{category.name}</h2>
+                  <ul role="list-category-products">
+                    {products.map((product) => {
+                      if (product.category.id === category.id) {
+                        return (
+                          <li key={`${category.id}-${product.id}`}>
+                            {product.title}
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div>Not found any category</div>
+          )}
+        </>
       ) : (
-        <div>Not found any category</div>
+        <h1>Search Mode</h1>
       )}
 
-      <h1>All products</h1>
+      {!search && <h1>All products</h1>}
       {products && products.length > 0 ? (
         <ul role="list-products">
           {products.map((product) => (

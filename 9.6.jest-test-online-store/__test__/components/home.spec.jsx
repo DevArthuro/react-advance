@@ -14,22 +14,14 @@ describe("home page test", () => {
       render(<Home />);
 
       expect(
-        await screen.findByRole(
-          "heading",
-          { name: /All products/ },
-          { timeout: 1000 }
-        )
+        await screen.findByRole("heading", { name: /All products/ })
       ).toBeInTheDocument();
     });
 
     it("Should have a search box with accesible name", async () => {
       render(<Home />);
 
-      const searchBox = await screen.findByRole(
-        "searchBox",
-        {},
-        { timeout: 1000 }
-      );
+      const searchBox = await screen.findByRole("searchBox");
       // This makes reference the attribute 'title'
       expect(searchBox).toHaveAccessibleDescription("Search");
     });
@@ -119,6 +111,8 @@ describe("home page test", () => {
       };
 
       identifyReplyOfProducts(productsMock.length + 1);
+
+      expect(screen.queryByText(/Search Mode/)).not.toBeInTheDocument();
 
       // When the product is founded
       await type(searchInput, productMock.title);
