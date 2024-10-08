@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import products from "./platzi/product";
+import products from "./platzi/products";
 import categories from "./platzi/categories";
 
 export const BASE_URL = "https://api.escuelajs.co/api/v1";

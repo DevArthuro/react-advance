@@ -1,6 +1,43 @@
-export default async function Home() {
-  const products = await fetchProducts();
-  const categories = await fetchCategories();
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+
+export default function Home() {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [backupProducts, setProductsBackup] = useState([]);
+
+  const getData = useCallback(async () => {
+    setLoading(true);
+    const responseProducts = await fetchProducts();
+    const responseCategories = await fetchCategories();
+
+    setProducts(responseProducts);
+    setProductsBackup(responseProducts);
+    setCategories(responseCategories);
+    setLoading(false);
+  });
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleSearch = useCallback(() => {
+    if (search.length === 0) {
+      setProducts(backupProducts);
+      return;
+    }
+    const filteredProducts = backupProducts.filter((product) => {
+      return product.title.toLowerCase().includes(search.toLowerCase());
+    });
+    setProducts(filteredProducts);
+  }, [search]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -9,6 +46,11 @@ export default async function Home() {
         type="text"
         title="Search"
         placeholder="Search Products"
+        data-testid="inputSearch"
+        onChange={(e) => {
+          setSearch(e.target.value);
+          handleSearch();
+        }}
       />
 
       <h1>All Categories</h1>
