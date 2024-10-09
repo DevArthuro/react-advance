@@ -12,7 +12,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [backupProducts, setProductsBackup] = useState([]);
 
-  const { cart } = useContext(commerceContext);
+  const { cart, clearCart } = useContext(commerceContext);
 
   const getData = useCallback(async () => {
     setLoading(true);
@@ -48,6 +48,8 @@ export default function Home() {
     <div>
       <h1>Cart</h1>
       <p>Items in cart: {cart.length}</p>
+
+      <button onClick={() => clearCart()}>Clear cart</button>
       <hr />
       <input
         role="searchBox"

@@ -6,7 +6,7 @@ const useManageCart = () => {
   const [cart, setCart] = useState([]);
 
   const addProduct = (product) => {
-    setCart((prev) => setCart([...prev, product]));
+    setCart((prev) => [...prev, product]);
   };
 
   const removeProduct = (id) => {

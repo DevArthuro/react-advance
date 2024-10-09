@@ -8,7 +8,7 @@ const Categories = ({ categories, products }) => {
       {categories.map((category) => (
         <li key={category.id} role="parent-category">
           <h2>{category.name}</h2>
-          <ul role="list-category-products">
+          <ul role="list-category-products" data-testid={category.id}>
             <Products products={products} />
           </ul>
         </li>
