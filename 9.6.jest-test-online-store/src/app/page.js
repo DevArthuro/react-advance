@@ -1,6 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import Categories from "@/components/Categories";
+import Products from "@/components/Products";
+import { commerceContext } from "@/context/commerce";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -8,6 +11,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [backupProducts, setProductsBackup] = useState([]);
+
+  const { cart } = useContext(commerceContext);
 
   const getData = useCallback(async () => {
     setLoading(true);
@@ -41,6 +46,9 @@ export default function Home() {
 
   return (
     <div>
+      <h1>Cart</h1>
+      <p>Items in cart: {cart.length}</p>
+      <hr />
       <input
         role="searchBox"
         type="text"
@@ -57,24 +65,7 @@ export default function Home() {
         <>
           <h1>All Categories</h1>
           {categories && categories.length > 0 ? (
-            <ul role="list-categories">
-              {categories.map((category) => (
-                <li key={category.id} role="parent-category">
-                  <h2>{category.name}</h2>
-                  <ul role="list-category-products">
-                    {products.map((product) => {
-                      if (product.category.id === category.id) {
-                        return (
-                          <li key={`${category.id}-${product.id}`}>
-                            {product.title}
-                          </li>
-                        );
-                      }
-                    })}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+            <Categories categories={categories} products={products} />
           ) : (
             <div>Not found any category</div>
           )}
@@ -85,10 +76,13 @@ export default function Home() {
 
       {!search && <h1>All products</h1>}
       {products && products.length > 0 ? (
-        <ul role="list-products">
-          {products.map((product) => (
-            <li key={product.id}>{product.title}</li>
-          ))}
+        <ul
+          role="list-products"
+          style={{
+            listStyle: "none",
+          }}
+        >
+          <Products products={products} />
         </ul>
       ) : (
         <div>Not found any product</div>
