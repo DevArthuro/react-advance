@@ -19,6 +19,7 @@ const Product = (product) => {
         gap: "20px",
         height: "50px",
       }}
+      data-testid={id}
     >
       <h4>{title}</h4>
       {!bought ? (

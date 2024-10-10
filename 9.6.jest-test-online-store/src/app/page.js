@@ -47,7 +47,9 @@ export default function Home() {
   return (
     <div>
       <h1>Cart</h1>
-      <p>Items in cart: {cart.length}</p>
+      <p>
+        Items in cart: <span>{cart.length}</span>
+      </p>
 
       <button onClick={() => clearCart()}>Clear cart</button>
       <hr />

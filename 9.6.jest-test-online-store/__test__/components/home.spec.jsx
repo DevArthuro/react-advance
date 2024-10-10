@@ -127,5 +127,74 @@ describe("home page test", () => {
 
       expect(screen.getByText(/Not found any product/)).toBeInTheDocument();
     });
+
+    it("To be the cart component and interact with it", async () => {
+      const productMock = {
+        id: 999,
+        title: "Clasica camisa",
+        price: 90,
+        description:
+          "Elevate your casual wear with our Classic Grey Hooded Sweatshirt. Made from a soft cotton blend, this hoodie features a front kangaroo pocket, an adjustable drawstring hood, and ribbed cuffs for a snug fit. Perfect for those chilly evenings or lazy weekends, it pairs effortlessly with your favorite jeans or joggers.",
+        images: ["https://i.imgur.com/R2PN9Wq.jpeg"],
+        creationAt: "2024-10-07T20:00:21.000Z",
+        updatedAt: "2024-10-07T21:14:48.000Z",
+        category: {
+          id: 1,
+          name: "Clothes",
+          image: "https://i.imgur.com/QkIa5tT.jpeg",
+          creationAt: "2024-10-07T20:00:21.000Z",
+          updatedAt: "2024-10-07T20:00:21.000Z",
+        },
+      };
+
+      const joinedProducts = [productMock, ...productsMock];
+
+      server.use(
+        rest.get(`${BASE_URL}/products`, (_, res, ctx) => {
+          return res(ctx.json(joinedProducts));
+        })
+      );
+
+      const { click } = userEvent.setup();
+
+      render(<Home />);
+
+      const cart = await screen.findByText(/Items in cart/);
+
+      expect(cart).toHaveTextContent(0);
+
+      // Traemos los products
+      const listProducts = screen.getAllByRole("list-products");
+
+      let button;
+
+      // iteramos para sacar los li -> listitem
+      listProducts.forEach(async (element) => {
+        // Traemos todos los elementos li
+        const productElement = within(element)
+          .getAllByRole("listitem")
+          // Buscamos el product que necesitamos en este caso por el productMock
+          .find((element) => within(element).getByTestId(productMock.id));
+
+        // Verificamos que haya captado el product que necesitamos
+        expect(productElement).toHaveTextContent(productMock.title);
+
+        // captamos el elemento boton
+        const buttonBuy = within(productElement).getByRole("button", {
+          name: /Comprar/,
+        });
+
+        expect(buttonBuy).toBeInTheDocument();
+
+        button = buttonBuy;
+      });
+      await click(button);
+
+      const buttonBuy = within(productElement).getByRole("button", {
+        name: /Comprar/,
+      });
+
+      expect(buttonBuy).not.toBeInTheDocument();
+    });
   });
 });
