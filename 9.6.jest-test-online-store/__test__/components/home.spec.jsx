@@ -1,12 +1,13 @@
 import React from "react";
 import Home from "@/app/page";
-import { act, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { server } from "@/mocks/server";
 import { rest } from "msw";
 import { BASE_URL } from "@/mocks/handlers";
 import productsMock from "@/mocks/platzi/products";
 import categoriesMocks from "@/mocks/platzi/categories";
+import Provider from "@/provider";
 
 describe("home page test", () => {
   describe("Render", () => {
@@ -157,7 +158,12 @@ describe("home page test", () => {
 
       const { click } = userEvent.setup();
 
-      render(<Home />);
+      // When we have a context in the app need to add the providers
+      render(
+        <Provider>
+          <Home />
+        </Provider>
+      );
 
       const cart = await screen.findByText(/Items in cart/);
 
@@ -186,15 +192,38 @@ describe("home page test", () => {
 
         expect(buttonBuy).toBeInTheDocument();
 
-        button = buttonBuy;
-      });
-      await click(button);
+        fireEvent.click(buttonBuy);
 
-      const buttonBuy = within(productElement).getByRole("button", {
-        name: /Comprar/,
+        expect(buttonBuy).toHaveTextContent(/Quitar/);
       });
 
-      expect(buttonBuy).not.toBeInTheDocument();
+      // El mismo producto debe cambiar en la lista de categoria
+
+      const listCategory = screen.getAllByRole("list-categories");
+
+      listCategory.forEach((element) => {
+        const listOfPoducts = within(element)
+          .getAllByTestId(`category-${productMock.category.id}`)
+          .find((element) =>
+            within(element).getAllByRole("list-category-products")
+          );
+
+        const productsByCategories = within(listOfPoducts).getAllByRole(
+          "list-category-products"
+        );
+
+        // Verificamos que el boton en categorias contenga el texto que necesitamos
+        productsByCategories.forEach((element) => {
+          const productElement = within(element).getByTestId(productMock.id);
+
+          expect(within(productElement).getByRole("button")).toHaveTextContent(
+            /Quitar/
+          );
+        });
+      });
+
+      // Hemos comprado un producto
+      expect(cart).toHaveTextContent(1);
     });
   });
 });

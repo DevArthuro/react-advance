@@ -11,6 +11,8 @@ const Product = (product) => {
     return !!productFound;
   }, [cart]);
 
+  const handlerClick = () => addProduct(product);
+
   return (
     <div
       style={{
@@ -23,9 +25,9 @@ const Product = (product) => {
     >
       <h4>{title}</h4>
       {!bought ? (
-        <button onClick={() => addProduct(product)}>Comprar</button>
+        <button onClick={handlerClick}>Comprar</button>
       ) : (
-        <button onClick={() => removeProduct(id)}>Quitar</button>
+        <button onClick={handlerClick}>Quitar</button>
       )}
     </div>
   );
