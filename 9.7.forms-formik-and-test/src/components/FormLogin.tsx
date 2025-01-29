@@ -1,4 +1,8 @@
-const Form = () => {
+"use client";
+import Image from "next/image";
+import ImageForm from "../assets/image.png";
+
+const FormLogin = () => {
   return (
     <>
       <form
@@ -8,7 +12,7 @@ const Form = () => {
         className="form"
       >
         <div className="form__image">
-          <img src="#" className="form__image-img" />
+          <Image src={ImageForm} className="form__image-img" alt="logo image" />
         </div>
         <div className="form__inputs">
           <input type="text" className="form__inputs-username" />
@@ -30,4 +34,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormLogin;
