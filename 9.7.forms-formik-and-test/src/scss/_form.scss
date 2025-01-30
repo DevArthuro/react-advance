@@ -7,13 +7,19 @@ $border-radius: 10px;
   justify-content: center;
   align-items: center;
   max-width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 30px;
+  border: #5f5e5e 1px solid;
   .form__image {
     &-img {
       width: 250px;
       height: 250px;
       border-radius: 50%;
-      border: black 2px solid;
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 
@@ -51,5 +57,23 @@ $border-radius: 10px;
         cursor: pointer;
       }
     }
+  }
+
+  .form__links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    a {
+      color: #5f5e5e;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .form {
+    padding: 20px;
   }
 }
