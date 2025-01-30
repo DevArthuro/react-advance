@@ -10,6 +10,7 @@ const FormLogin = () => {
           e.preventDefault();
         }}
         className="form"
+        data-testid="form"
       >
         <div className="form__image">
           <Image src={ImageForm} className="form__image-img" alt="logo image" />
